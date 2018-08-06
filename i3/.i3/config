@@ -16,7 +16,7 @@
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:Ubuntu Mono 13
 
-#Theme colors           border  backg   text    indicator
+# Theme colors           border  backg   text    indicator
 client.focused          #3F8AC2 #1e1f21 #ffffff #00DA8E
 client.focused_inactive #333333 #5F676A #ffffff #484e50
 client.unfocused        #333333 #353535 #888888 #292d2e 
@@ -183,9 +183,6 @@ focus_follows_mouse no
 
 #autostart nm-applet
 exec --no-startup-id nm-applet
-
-#start syndaemon
-exec --no-startup-id "syndaemon -i 0.6 -d -K"
 
 #lock the screen after inactivity
 #exec --no-startup-id xautolock -time 10 -locker "systemctl suspend" -detectsleep

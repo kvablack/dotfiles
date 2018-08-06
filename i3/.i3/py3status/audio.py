@@ -15,16 +15,10 @@ class Py3status:
 
         paclist = subprocess.check_output(["pacmd", "list"])
 
-        if "active port: <analog-output-headphones>" in str(paclist):
-            if "true" in str(muted):
-                color = "#FF9000"
-            else:
-                color = "#FFFFFF"
+        if "true" in str(muted):
+            color = "#FF0000"
         else:
-            if "true" in str(muted):
-                color = "#FF0000"
-            else:
-                color = "#00FF00"
+            color = "#00FF00"
 
         return {
             'full_text': " ♪ {} ".format(int(volume)),
