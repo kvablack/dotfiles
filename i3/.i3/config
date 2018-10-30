@@ -14,7 +14,7 @@
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Ubuntu Mono 13
+font pango:Ubuntu Mono 12
 
 # Theme colors           border  backg   text    indicator
 client.focused          #3F8AC2 #1e1f21 #ffffff #00DA8E
@@ -44,8 +44,8 @@ new_float pixel
 for_window [class="Gedit"] floating enable
 
 # start a terminal
-bindsym Mod1+Return exec i3-sensible-terminal
-bindsym Mod1+Shift+Return exec i3-sensible-terminal; exec --no-startup-id "sh -c 'sleep 0.5;i3-msg floating enable move right 590px, move down 320px'"
+bindsym Mod1+Return exec gnome-terminal
+bindsym Mod1+Shift+Return exec gnome-terminal; exec --no-startup-id "sh -c 'sleep 0.5;i3-msg floating enable move right 590px, move down 320px'"
 
 # kill focused window
 bindsym Mod1+q kill
@@ -166,14 +166,14 @@ mode "resize" {
 
 bindsym Mod1+r mode "resize"
 
-bindsym Mod1+m exec i3-sensible-terminal; exec --no-startup-id "sh -c 'sleep 0.5;i3-msg move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up; sleep 0.1; i3-msg resize shrink height 1px or 35 ppt'"
+bindsym Mod1+m exec gnome-terminal; exec --no-startup-id "sh -c 'sleep 0.5;i3-msg move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up\; move up; sleep 0.1; i3-msg resize shrink height 1px or 35 ppt'"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command py3status -c ~/.i3/i3status.conf
+        status_command py3status -c ~/.i3/i3status.conf -n 1
         tray_padding 0
-        font pango:Ubuntu Mono 14
+        font pango:Ubuntu Mono 13
         colors {
             background #282828
         }

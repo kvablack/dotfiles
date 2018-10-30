@@ -51,7 +51,7 @@ nmap <Leader>c :w<CR>:!g++ -std=c++14 %<CR>:!./a.out<CR>
 map <Leader>f :NERDTreeToggle<CR>
 map <Leader>g  :YcmCompleter GoTo<CR>
 map <Leader>d :YcmCompleter GetDoc<CR>
-map <Leader>c :pc<CR>
+map <Leader>q :pc<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nmap <Leader>s <Plug>(ale_fix)
