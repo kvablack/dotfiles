@@ -27,7 +27,7 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 good = #00e644
-bad = #f90000
+bad = #c40505
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -46,7 +46,7 @@ line-color = #f00
 
 module-margin = 1
 
-font-0 = FontAwesome5Free:style=Solid:size=12;1
+font-0 = FontAwesome5Free:style=Solid:size=13;3
 font-1 = Ubuntu Mono:size=13;2
 ;font-2 = fixed:pixelsize=10;1
 ;font-3 = unifont:fontformat=truetype:size=8:antialias=false;0
@@ -181,7 +181,7 @@ label-volume = %percentage:2%
 label-volume-foreground = ${colors.foreground}
 
 label-muted =  
-label-muted-foreground = ${colors.bad}
+label-muted-foreground = ${colors.foreground-alt}
 
 ramp-volume-0 = 
 ramp-volume-1 = 
