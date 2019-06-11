@@ -42,6 +42,7 @@ floating_modifier Mod1
 new_float pixel
 
 for_window [class="Gedit"] floating enable
+for_window [class="Spotify"] floating enable
 
 # start a terminal
 bindsym Mod1+Return exec gnome-terminal
@@ -188,8 +189,9 @@ exec --no-startup-id nm-applet
 #lock the screen after inactivity
 #exec --no-startup-id xautolock -time 10 -locker "systemctl suspend" -detectsleep
 
-# start firefox
-bindsym Mod1+c exec --no-startup-id firefox
+# start various programs
+bindsym Mod1+c exec --no-startup-id google-chrome-stable
+bindsym Mod1+o exec --no-startup-id spotify
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer sset Master 5%+"

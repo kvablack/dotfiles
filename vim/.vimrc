@@ -27,6 +27,10 @@ set breakindent
 set incsearch
 set splitbelow
 
+"text wrap width
+set textwidth=120
+set formatoptions-=t
+
 set showcmd
 set mouse=a
 set clipboard=unnamedplus
