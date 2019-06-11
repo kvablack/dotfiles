@@ -1,11 +1,9 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=/usr/lib/jvm/jdk1.8.0_71/bin/:/home/kevin-black/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/logisim:/usr/bin/core_perl:/usr/bin/vendor_perl
+export PATH=
 
-export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 # Path to your oh-my-zsh installation.
-export ZSH=/home/black/.oh-my-zsh
+export ZSH=
 
-export SUDO_EDITOR=/usr/sbin/vim
+export SUDO_EDITOR=/usr/bin/vim
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -32,7 +30,7 @@ ZSH_THEME="bira-custom"
 DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
  COMPLETION_WAITING_DOTS="true"
@@ -97,8 +95,6 @@ if [ -n "$INSIDE_EMACS" ]; then
     export EDITOR=emacsclient
     unset zle_bracketed_paste
 fi
-
-eval $(thefuck --alias)
 
 alias sudo="sudo "
 
