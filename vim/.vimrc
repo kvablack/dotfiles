@@ -1,7 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
@@ -31,6 +31,7 @@ set splitbelow
 "text wrap width
 set textwidth=120
 set formatoptions-=t
+autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 set showcmd
 set mouse=a

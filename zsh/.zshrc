@@ -1,7 +1,9 @@
-export PATH=
+export PATH=$PATH:/usr/local/bin:/Users/kblack53/Library/Python/3.7/bin:/usr/local/go/bin:/Users/kblack53/go/bin
 
 # Path to your oh-my-zsh installation.
-export ZSH=
+export ZSH=/Users/kblack53/.oh-my-zsh
+
+export GOPATH=/Users/kblack53/go
 
 export SUDO_EDITOR=/usr/bin/vim
 
@@ -30,7 +32,7 @@ ZSH_THEME="bira-custom"
 DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
  COMPLETION_WAITING_DOTS="true"
@@ -52,7 +54,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git command-not-found vi-mode history-substring-search sudo-custom)
+plugins=(git command-not-found vi-mode history-substring-search sudo-custom virtualenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -84,7 +86,7 @@ export SSH_KEY_PATH="~/.ssh/keyfiles"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-bindkey -v
+#bindkey -v
 
 bindkey '^K' history-substring-search-up
 bindkey '^J' history-substring-search-down
