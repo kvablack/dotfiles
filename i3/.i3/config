@@ -192,6 +192,7 @@ exec --no-startup-id nm-applet
 # start various programs
 bindsym Mod1+c exec --no-startup-id google-chrome-stable
 bindsym Mod1+o exec --no-startup-id spotify
+bindsym Mod1+ctrl+l exec --no-startup-id lock
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer sset Master 5%+"
