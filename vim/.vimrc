@@ -1,9 +1,10 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-vinegar'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -19,7 +20,6 @@ syntax on
 set background=dark
 set t_Co=256
 
-
 "general settings
 set tabstop=4
 set softtabstop=4
@@ -29,6 +29,7 @@ set autoindent
 set breakindent
 set incsearch
 set splitbelow
+set hidden
 
 "text wrap width
 set textwidth=120
@@ -48,15 +49,14 @@ nnoremap <Leader>k <C-W><C-K>
 nnoremap <Leader>l <C-W><C-L>
 nnoremap <Leader>h <C-W><C-H>
 
-"tab navigations
-nnoremap <S-L> gt
-nnoremap <S-H> gT
+"buffer navigations
+nnoremap <S-L> :bn<CR>
+nnoremap <S-H> :bp<CR>
 
 "other shortcuts
 inoremap kj <Esc>
 nmap <Leader>p :w<CR>:!python %<CR>
 nmap <Leader>c :w<CR>:!g++ -std=c++14 %<CR>:!./a.out<CR>
-map <Leader>f :NERDTreeToggle<CR>
 map <Leader>g  :YcmCompleter GoTo<CR>
 map <Leader>d :YcmCompleter GetDoc<CR>
 map <Leader>q :pc<CR>
@@ -68,23 +68,25 @@ nmap <Leader>s <Plug>(ale_fix)
 set undofile
 set undodir=$HOME/.vim_undo
 
+"ctrlP settings
+let g:ctrlp_map = '<C-f>'
+let g:ctrlp_cmd = 'CtrlP'
+nmap <C-p> :CtrlPMRU<CR>
+nmap <C-b> :CtrlPBuffer<CR>
+let g:ctrlp_open_multiple_files = '1i'
+
 "ale settings
 let g:ale_sign_error = '·'
 let g:ale_sign_warning = '-'
 let g:ale_python_flake8_options = '--ignore=E5,E3'
 let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_column_always = 1
+let g:ale_c_parse_makefile = 1
 
 "airline settings
 let g:airline_powerline_fonts=1
 let g:airline_theme="bubblegum"
 let g:airline#extensions#tabline#enabled = 1
-
-"NERDTree settings
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | wincmd h | endif
 
 "YCM settings
 let g:ycm_autoclose_preview_window_after_completion = 1
