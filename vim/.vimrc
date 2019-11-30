@@ -30,11 +30,13 @@ set breakindent
 set incsearch
 set splitbelow
 set hidden
+autocmd FileType netrw setl bufhidden=wipe
 
 "text wrap width
 set textwidth=120
 set formatoptions-=t
 autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+let g:netrw_fastbrowse = 0
 
 set showcmd
 set mouse=a
