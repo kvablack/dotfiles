@@ -50,7 +50,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git command-not-found vi-mode history-substring-search sudo-custom virtualenv fzf)
+plugins=(git command-not-found vi-mode history-substring-search sudo virtualenv fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,6 +105,7 @@ zle -N fzf-cd-from-home _fzf-cd-from-home
 bindkey '^K' history-substring-search-up
 bindkey '^J' history-substring-search-down
 bindkey '^F' fzf-cd-from-home
+bindkey '^S' sudo-command-line
 
 export KEYTIMEOUT=1
 
