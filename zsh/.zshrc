@@ -1,16 +1,12 @@
-export PATH=$PATH:/usr/local/bin:/Users/kblack53/Library/Python/3.7/bin:/usr/local/go/bin:/Users/kblack53/go/bin
-
+# If you come from bash you might have to change your $PATH.
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/kblack53/.oh-my-zsh
+export ZSH=/home/black/.oh-my-zsh
 
-export GOPATH=/Users/kblack53/go
+export SUDO_EDITOR=/usr/sbin/vim
 
-export SUDO_EDITOR=/usr/bin/vim
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bira-custom"
+unsetopt auto_cd
+setopt hist_ignore_dups
+setopt extended_glob
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -54,7 +50,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git command-not-found vi-mode history-substring-search sudo-custom virtualenv)
+plugins=(git command-not-found vi-mode history-substring-search sudo-custom virtualenv fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,9 +83,28 @@ export SSH_KEY_PATH="~/.ssh/keyfiles"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #bindkey -v
+#
+_fzf-cd-from-home () {
+	local cmd="find -L ~ -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune -o -type d -print 2> /dev/null"
+	setopt localoptions pipefail no_aliases 2> /dev/null
+	local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" fzf)"
+	if [[ -z "$dir" ]]
+	then
+		zle redisplay
+		return 0
+	fi
+	cd "$dir"
+	unset dir
+	local ret=$?
+	zle fzf-redraw-prompt
+	return $ret
+}
+
+zle -N fzf-cd-from-home _fzf-cd-from-home
 
 bindkey '^K' history-substring-search-up
 bindkey '^J' history-substring-search-down
+bindkey '^F' fzf-cd-from-home
 
 export KEYTIMEOUT=1
 
@@ -97,6 +112,8 @@ if [ -n "$INSIDE_EMACS" ]; then
     export EDITOR=emacsclient
     unset zle_bracketed_paste
 fi
+
+eval $(thefuck --alias)
 
 alias sudo="sudo "
 
@@ -107,4 +124,38 @@ alias lla="ls -la"
 
 alias vi="vim"
 
+# activate python venv alias
+activate () { source $*/bin/activate }
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+### CUSTOM THEME (BASED ON BIRA) ###
+
+# force prompt to reset on keymap change
+function zle-line-init zle-keymap-select {
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+if [[ $UID -eq 0 ]]; then
+    local user_host='%{$terminfo[bold]$fg[red]%}%n@%m%{$reset_color%}'
+else
+    local user_host='%{$terminfo[bold]$fg[green]%}%n@%m%{$reset_color%}'
+fi
+
+local symbol_color='${${KEYMAP/vicmd/"%{$fg[red]%}"}/main/}'
+
+local current_dir='%{$terminfo[bold]$fg[blue]%}%~%{$reset_color%}'
+local git_branch='$(git_prompt_info)%{$reset_color%}'
+local venv_prompt='$(virtualenv_prompt_info)'
+
+PROMPT="╭─${venv_prompt}${user_host} ${current_dir} ${git_branch}
+╰─%B${symbol_color}$%{$reset_color%}%b "
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
+ZSH_THEME_GIT_PROMPT_SUFFIX="›%{$reset_color%}"
+ZSH_THEME_VIRTUALENV_PREFIX="%{$fg[green]%}‹"
+ZSH_THEME_VIRTUALENV_SUFFIX="›%{$reset_color%} "
+RPS1=""
