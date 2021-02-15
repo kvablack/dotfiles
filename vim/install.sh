@@ -2,6 +2,6 @@
 
 cd ~
 rm .vimrc
-ln -s dotfiles/zsh/.vimrc .zshrc
-ln -s dotfiles/zsh/.vim .vim
+ln -s dotfiles/vim/.vimrc .vimrc
+ln -s dotfiles/vim/.vim .vim
 mkdir .vim_undo
