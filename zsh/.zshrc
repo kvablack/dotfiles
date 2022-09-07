@@ -125,13 +125,20 @@ else
     local user_host='%{$terminfo[bold]$fg[green]%}%n@%m%{$reset_color%}'
 fi
 
+function conda_prompt_info(){
+  [[ -n ${CONDA_DEFAULT_ENV} ]] || return
+  echo "${ZSH_THEME_VIRTUALENV_PREFIX=[}$(basename $CONDA_DEFAULT_ENV)${ZSH_THEME_VIRTUALENV_SUFFIX=]}"
+}
+
 local symbol_color='${${KEYMAP/vicmd/"%{$fg[red]%}"}/main/}'
 
 local current_dir='%{$terminfo[bold]$fg[blue]%}%~%{$reset_color%}'
 local git_branch='$(git_prompt_info)%{$reset_color%}'
 local venv_prompt='$(virtualenv_prompt_info)'
+local conda_prompt='$(conda_prompt_info)'
 
-PROMPT="╭─${venv_prompt}${user_host} ${current_dir} ${git_branch}
+
+PROMPT="╭─${venv_prompt}${conda_prompt}${user_host} ${current_dir} ${git_branch}
 ╰─%B${symbol_color}$%{$reset_color%}%b "
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
