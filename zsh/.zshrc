@@ -2,7 +2,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/home/black/.oh-my-zsh
 
-export SUDO_EDITOR=/usr/sbin/vim
+export SUDO_EDITOR=/usr/bin/vim
 
 unsetopt auto_cd
 setopt hist_ignore_dups
@@ -50,7 +50,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git command-not-found vi-mode history-substring-search sudo virtualenv fzf)
+plugins=(git command-not-found vi-mode history-substring-search sudo virtualenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -84,23 +84,6 @@ export SSH_KEY_PATH="~/.ssh/keyfiles"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #bindkey -v
 #
-_fzf-cd-from-home () {
-	local cmd="find -L ~ -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune -o -type d -print 2> /dev/null"
-	setopt localoptions pipefail no_aliases 2> /dev/null
-	local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" fzf)"
-	if [[ -z "$dir" ]]
-	then
-		zle redisplay
-		return 0
-	fi
-	cd "$dir"
-	unset dir
-	local ret=$?
-	zle fzf-redraw-prompt
-	return $ret
-}
-
-zle -N fzf-cd-from-home _fzf-cd-from-home
 
 bindkey '^K' history-substring-search-up
 bindkey '^J' history-substring-search-down
@@ -114,8 +97,6 @@ if [ -n "$INSIDE_EMACS" ]; then
     unset zle_bracketed_paste
 fi
 
-eval $(thefuck --alias)
-
 alias sudo="sudo "
 
 alias la="ls -a"
@@ -127,8 +108,6 @@ alias vi="vim"
 
 # activate python venv alias
 activate () { source $*/bin/activate }
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
 ### CUSTOM THEME (BASED ON BIRA) ###
