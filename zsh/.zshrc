@@ -106,6 +106,12 @@ alias lla="ls -la"
 
 alias vi="vim"
 
+alias brc="/home/black/dotfiles/brc/brc.sh"
+
+function pdb() {
+    python -m debugpy --wait-for-client --listen 5678 $@
+}
+
 # activate python venv alias
 activate () { source $*/bin/activate }
 
