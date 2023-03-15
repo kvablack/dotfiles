@@ -85,6 +85,10 @@ export SSH_KEY_PATH="~/.ssh/keyfiles"
 #bindkey -v
 #
 
+autoload -U edit-command-line
+zle -N edit-command-line
+
+bindkey '^E' edit-command-line
 bindkey '^K' history-substring-search-up
 bindkey '^J' history-substring-search-down
 bindkey '^F' fzf-cd-from-home
