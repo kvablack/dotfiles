@@ -144,7 +144,7 @@ function conda_prompt_info(){
 
 local symbol_color='${${KEYMAP/vicmd/"%{$fg[red]%}"}/main/}'
 
-local current_dir='%{$terminfo[bold]$fg[blue]%}%60<..<%~%<<%{$reset_color%}'
+local current_dir='%{$terminfo[bold]$fg[blue]%}%40<..<%~%<<%{$reset_color%}'
 local git_branch='$(git_prompt_info)%{$reset_color%}'
 local venv_prompt='$(virtualenv_prompt_info)'
 local conda_prompt='$(conda_prompt_info)'
