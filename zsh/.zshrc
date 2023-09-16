@@ -13,7 +13,7 @@ setopt extended_glob
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -28,15 +28,15 @@ setopt extended_glob
 DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
- COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -96,11 +96,6 @@ bindkey '^S' sudo-command-line
 
 export KEYTIMEOUT=1
 
-if [ -n "$INSIDE_EMACS" ]; then
-    export EDITOR=emacsclient
-    unset zle_bracketed_paste
-fi
-
 alias sudo="sudo "
 
 alias la="ls -a"
@@ -112,8 +107,15 @@ alias vi="vim"
 
 alias brc="/home/black/dotfiles/brc/brc.sh"
 
+alias v3ssh="gcloud compute tpus tpu-vm ssh --zone us-central1-a"
+alias v4ssh="gcloud compute tpus tpu-vm ssh --zone us-central2-b"
+
+alias htop="TERM=screen-256color $(which htop)"
+
+alias gpu="gpustat -i 0.2"
+
 function pdb() {
-    python -m debugpy --wait-for-client --listen 5678 $@
+    PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT=10 python -m debugpy --wait-for-client --listen 5678 $@
 }
 
 # activate python venv alias
@@ -142,7 +144,7 @@ function conda_prompt_info(){
 
 local symbol_color='${${KEYMAP/vicmd/"%{$fg[red]%}"}/main/}'
 
-local current_dir='%{$terminfo[bold]$fg[blue]%}%~%{$reset_color%}'
+local current_dir='%{$terminfo[bold]$fg[blue]%}%60<..<%~%<<%{$reset_color%}'
 local git_branch='$(git_prompt_info)%{$reset_color%}'
 local venv_prompt='$(virtualenv_prompt_info)'
 local conda_prompt='$(conda_prompt_info)'
