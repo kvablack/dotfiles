@@ -23,6 +23,6 @@ click() {
 case "$SENDER" in
   "wifi_change") update
   ;;
-  "mouse.clicked") click
+  "mouse.clicked") update; click
   ;;
 esac
