@@ -1,0 +1,23 @@
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# bsp tiling
+yabai -m config layout bsp
+
+# Set all padding and gaps
+yabai -m config top_padding 0
+# yabai -m config bottom_padding 5
+# yabai -m config left_padding 5
+# yabai -m config right_padding 5
+yabai -m config window_gap 5
+
+yabai -m config external_bar all:24:0
+
+# set focus follows mouse mode (default: off, options: off, autoraise, autofocus)
+yabai -m config focus_follows_mouse autoraise
+
+# floating windows are always on top (default: off)
+yabai -m config window_topmost on
+
+# float system preferences
+yabai -m rule --add app="^System Settings$" manage=off

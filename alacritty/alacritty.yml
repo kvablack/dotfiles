@@ -1,0 +1,8 @@
+font:
+  size: 14.0
+
+window:
+  decorations: Buttonless
+  padding:
+    x: 5
+    y: 5
