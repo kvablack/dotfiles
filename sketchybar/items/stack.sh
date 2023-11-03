@@ -9,4 +9,4 @@ stack=(
 
 sketchybar -m --add item stack left \
               --set stack "${stack[@]}" \
-              --subscribe stack window_focus front_app_switched space_change
+              --subscribe stack front_app_switched space_change

@@ -17,21 +17,21 @@ alt - k : yabai -m window --focus north || yabai -m display --focus north
 alt - l : yabai -m window --focus east  || yabai -m display --focus east
 
 # Stack navigation
-alt - p : yabai -m window --focus stack.prev && sketchybar --trigger windows_on_spaces
-alt - n : yabai -m window --focus stack.next && sketchybar --trigger windows_on_spaces
+alt - p : yabai -m window --focus stack.prev
+alt - n : yabai -m window --focus stack.next
 
 # Make window zoom to fullscreen
-alt - f : yabai -m window --toggle native-fullscreen; sketchybar --trigger window_focus
+alt - f : yabai -m window --toggle native-fullscreen; sketchybar --trigger front_app_switched
 
 # Float / Unfloat window
-alt + shift - f : yabai -m window --toggle float; sketchybar --trigger window_focus
+alt + shift - f : yabai -m window --toggle float; sketchybar --trigger front_app_switched
 
 # Close window
 alt - q : yabai -m window --close
 
 ## Layout control
 # Switch to stacking in current space
-alt - s : ~/.config/skhd/toggle_stack.sh
+alt - s : ~/.config/skhd/toggle_stack.sh; sketchybar --trigger front_app_switched
 
 ## Window Movement
 # Moving windows in spaces (through display borders); if floating move location

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+ANIM="--animate quadratic 5"
 
 TYPE=$(yabai -m query --spaces --space | jq '.["type"]')
 
@@ -29,7 +30,7 @@ if [[ "$TYPE" = '"stack"' ]]; then
         done
     fi
 
-    sketchybar --set stack label=$(printf "%s" ${dots[@]})
+    sketchybar $ANIM --set stack label=$(printf "%s" ${dots[@]})
 else
     sketchybar --set stack label=""
 fi
