@@ -21,3 +21,6 @@ yabai -m config window_topmost on
 
 # float system preferences
 yabai -m rule --add app="^System Settings$" manage=off
+
+# float Arc by default (for little arc)
+yabai -m rule --add app="^Arc$" manage=off
