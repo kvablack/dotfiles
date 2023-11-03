@@ -66,6 +66,7 @@ sketchybar --default "${defaults[@]}"
 # source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
 source "$ITEM_DIR/yabai.sh"
+source "$ITEM_DIR/stack.sh"
 # source "$ITEM_DIR/front_app.sh"
 
 # Center
