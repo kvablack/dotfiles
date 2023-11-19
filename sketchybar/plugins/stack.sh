@@ -1,6 +1,7 @@
 #!/bin/bash
 
-ANIM="--animate quadratic 5"
+# ANIM="--animate quadratic 5"
+ANIM=""
 
 TYPE=$(yabai -m query --spaces --space | jq '.["type"]')
 
