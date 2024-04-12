@@ -17,8 +17,8 @@ alt - k : yabai -m window --focus north || yabai -m display --focus north
 alt - l : yabai -m window --focus east  || yabai -m display --focus east
 
 # Stack navigation
-alt - p : yabai -m window --focus stack.prev
-alt - n : yabai -m window --focus stack.next
+alt - p : yabai -m window --focus stack.prev; sketchybar --trigger front_app_switched
+alt - n : yabai -m window --focus stack.next; sketchybar --trigger front_app_switched
 
 # Make window zoom to fullscreen
 alt - f : yabai -m window --toggle native-fullscreen; sketchybar --trigger front_app_switched
