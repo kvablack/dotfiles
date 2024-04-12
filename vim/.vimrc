@@ -40,7 +40,7 @@ let g:netrw_fastbrowse = 0
 
 set showcmd
 set mouse=a
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 "keyboard shortcuts
 let mapleader = " "
