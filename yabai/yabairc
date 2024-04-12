@@ -16,11 +16,11 @@ yabai -m config external_bar all:24:0
 # set focus follows mouse mode (default: off, options: off, autoraise, autofocus)
 # yabai -m config focus_follows_mouse off
 
-# floating windows are always on top (default: off)
-# yabai -m config window_topmost off
+yabai -m rule --add app=".*" layer=normal
 
 # float system preferences
 yabai -m rule --add app="^System Settings$" manage=off
 
 # float Arc by default (for little arc)
 yabai -m rule --add app="^Arc$" manage=off
+
