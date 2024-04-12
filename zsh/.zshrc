@@ -1,8 +1,15 @@
-# If you come from bash you might have to change your $PATH.
-# Path to your oh-my-zsh installation.
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export ZSH=/home/black/.oh-my-zsh
 
 export SUDO_EDITOR=/usr/bin/vim
+
+export ZSH_THEME="powerlevel10k/powerlevel10k"
 
 unsetopt auto_cd
 unsetopt correct
@@ -50,40 +57,12 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git command-not-found vi-mode history-substring-search sudo virtualenv)
+plugins=(git command-not-found vi-mode history-substring-search sudo)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 # ssh
 export SSH_KEY_PATH="~/.ssh/keyfiles"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#bindkey -v
-#
 
 autoload -U edit-command-line
 zle -N edit-command-line
@@ -109,8 +88,7 @@ alias brc="/home/black/dotfiles/brc/brc.sh"
 
 alias v3ssh="gcloud compute tpus tpu-vm ssh --zone us-central1-a"
 alias v4ssh="gcloud compute tpus tpu-vm ssh --zone us-central2-b"
-
-alias htop="TERM=screen-256color $(which htop)"
+alias v5ssh="gcloud compute tpus tpu-vm ssh --zone europe-west4-b"
 
 alias gpu="gpustat -i 0.2"
 
@@ -118,43 +96,5 @@ function pdb() {
     PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT=10 python -m debugpy --wait-for-client --listen 5678 $@
 }
 
-# activate python venv alias
-activate () { source $*/bin/activate }
-
-
-### CUSTOM THEME (BASED ON BIRA) ###
-
-# force prompt to reset on keymap change
-function zle-line-init zle-keymap-select {
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-
-if [[ $UID -eq 0 ]]; then
-    local user_host='%{$terminfo[bold]$fg[red]%}%n@%m%{$reset_color%}'
-else
-    local user_host='%{$terminfo[bold]$fg[green]%}%n@%m%{$reset_color%}'
-fi
-
-function conda_prompt_info(){
-  [[ -n ${CONDA_DEFAULT_ENV} ]] || return
-  echo "${ZSH_THEME_VIRTUALENV_PREFIX=[}$(basename $CONDA_DEFAULT_ENV)${ZSH_THEME_VIRTUALENV_SUFFIX=]}"
-}
-
-local symbol_color='${${KEYMAP/vicmd/"%{$fg[red]%}"}/main/}'
-
-local current_dir='%{$terminfo[bold]$fg[blue]%}%40<..<%~%<<%{$reset_color%}'
-local git_branch='$(git_prompt_info)%{$reset_color%}'
-local venv_prompt='$(virtualenv_prompt_info)'
-local conda_prompt='$(conda_prompt_info)'
-
-
-PROMPT="╭─${venv_prompt}${conda_prompt}${user_host} ${current_dir} ${git_branch}
-╰─%B${symbol_color}$%{$reset_color%}%b "
-
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
-ZSH_THEME_GIT_PROMPT_SUFFIX="›%{$reset_color%}"
-ZSH_THEME_VIRTUALENV_PREFIX="%{$fg[green]%}‹"
-ZSH_THEME_VIRTUALENV_SUFFIX="›%{$reset_color%} "
-RPS1=""
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
