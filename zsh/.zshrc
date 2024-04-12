@@ -5,6 +5,9 @@ export ZSH=/home/black/.oh-my-zsh
 export SUDO_EDITOR=/usr/bin/vim
 
 unsetopt auto_cd
+unsetopt correct
+unsetopt correct_all
+ENABLE_CORRECTION="false"
 setopt hist_ignore_dups
 setopt extended_glob
 
@@ -26,9 +29,6 @@ HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
