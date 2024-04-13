@@ -24,20 +24,3 @@ yabai -m rule --add app="^System Settings$" manage=off
 
 # float Arc by default (for little arc)
 yabai -m rule --add app="^Arc$" manage=off
-
-
-# See https://github.com/koekeishiya/yabai/blob/master/doc/yabai.asciidoc#673-event
-EVENT_TYPES=(
-    display_added
-    display_removed
-    display_changed
-    space_changed
-    application_visible
-    application_hidden
-    window_created
-    window_destroyed
-)
-
-for event in ${EVENT_TYPES[@]}; do
-    yabai -m signal --add event=$event action="hs -A -c 'stackline.manager:update({forceRedraw = true})'"
-done
