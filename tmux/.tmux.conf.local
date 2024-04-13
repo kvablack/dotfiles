@@ -387,6 +387,8 @@ unbind C-a
 unbind C-b
 set -g prefix C-b
 set -g prefix2 C-Space
+bind C-Space send-prefix
+bind C-b send-prefix
 
 # if you don't want Oh my tmux! to alter a binding, use #!important
 # bind c new-window -c '#{pane_current_path}' #!important
