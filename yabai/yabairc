@@ -1,3 +1,6 @@
+osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
+
+
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
@@ -5,7 +8,7 @@ sudo yabai --load-sa
 yabai -m config layout bsp
 
 # Set all padding and gaps
-yabai -m config top_padding 0
+yabai -m config top_padding 5
 # yabai -m config bottom_padding 5
 # yabai -m config left_padding 5
 # yabai -m config right_padding 5
@@ -22,3 +25,19 @@ yabai -m rule --add app="^System Settings$" manage=off
 # float Arc by default (for little arc)
 yabai -m rule --add app="^Arc$" manage=off
 
+
+# See https://github.com/koekeishiya/yabai/blob/master/doc/yabai.asciidoc#673-event
+EVENT_TYPES=(
+    display_added
+    display_removed
+    display_changed
+    space_changed
+    application_visible
+    application_hidden
+    window_created
+    window_destroyed
+)
+
+for event in ${EVENT_TYPES[@]}; do
+    yabai -m signal --add event=$event action="hs -A -c 'stackline.manager:update({forceRedraw = true})'"
+done

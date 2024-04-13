@@ -17,32 +17,32 @@ alt - k : yabai -m window --focus north || yabai -m display --focus north
 alt - l : yabai -m window --focus east  || yabai -m display --focus east
 
 # Stack navigation
-alt - p : yabai -m window --focus stack.prev; sketchybar --trigger front_app_switched
-alt - n : yabai -m window --focus stack.next; sketchybar --trigger front_app_switched
+alt - p : yabai -m window --focus stack.prev
+alt - n : yabai -m window --focus stack.next
 
 # Make window zoom to fullscreen
-alt - f : yabai -m window --toggle native-fullscreen; sketchybar --trigger front_app_switched
+alt - f : yabai -m window --toggle native-fullscreen
 
 # Float / Unfloat window
-alt + shift - f : yabai -m window --toggle float; sketchybar --trigger front_app_switched
+alt + shift - f : yabai -m window --toggle float
 
 # Close window
 alt - q : yabai -m window --close
 
 ## Layout control
 # Switch to stacking in current space
-alt - s : ~/.config/skhd/toggle_stack.sh; sketchybar --trigger front_app_switched
+alt - s : ~/.config/skhd/toggle_stack.sh
 
 ## Window Movement
 # Moving windows in spaces (through display borders); if floating move location
-alt + shift - h : yabai -m window --warp west || $(yabai -m window --display west && sketchybar --trigger windows_on_spaces && yabai -m display --focus west && yabai -m window --warp last) || yabai -m window --move rel:-10:0
-alt + shift - j : yabai -m window --warp south || $(yabai -m window --display south && sketchybar --trigger windows_on_spaces && yabai -m display --focus south) || yabai -m window --move rel:0:10
-alt + shift - k : yabai -m window --warp north || $(yabai -m window --display north && sketchybar --trigger windows_on_spaces && yabai -m display --focus north) || yabai -m window --move rel:0:-10
-alt + shift - l : yabai -m window --warp east || $(yabai -m window --display east && sketchybar --trigger windows_on_spaces && yabai -m display --focus east && yabai -m window --warp first) || yabai -m window --move rel:10:0
+alt + shift - h : yabai -m window --warp west || $(yabai -m window --display west yabai -m display --focus west && yabai -m window --warp last) || yabai -m window --move rel:-10:0
+alt + shift - j : yabai -m window --warp south || $(yabai -m window --display south && yabai -m display --focus south) || yabai -m window --move rel:0:10
+alt + shift - k : yabai -m window --warp north || $(yabai -m window --display north && yabai -m display --focus north) || yabai -m window --move rel:0:-10
+alt + shift - l : yabai -m window --warp east || $(yabai -m window --display east && yabai -m display --focus east && yabai -m window --warp first) || yabai -m window --move rel:10:0
 
 # Moving windows through stacks
-alt + shift - p : yabai -m window --swap stack.prev; yabai -m window --focus stack.prev; sketchybar --trigger front_app_switched
-alt + shift - n : yabai -m window --swap stack.next; yabai -m window --focus stack.next; sketchybar --trigger front_app_switched
+alt + shift - p : yabai -m window --swap stack.prev; yabai -m window --focus stack.prev
+alt + shift - n : yabai -m window --swap stack.next; yabai -m window --focus stack.next
 
 # Moving windows between spaces
 alt + shift - 1 : yabai -m window --space 1
@@ -71,7 +71,3 @@ alt - b : yabai -m space --balance
 ## Misc
 # Open new Alacritty window
 alt - t : open -n -a 'Alacritty.app'
-
-# Toggle sketchybar
-# alt + shift - space : sketchybar --bar hidden=toggle
-# alt + shift - r : sketchybar --remove '/.*/' && sh -c 'export CONFIG_DIR=$HOME/.config/sketchybar && $CONFIG_DIR/sketchybarrc'
