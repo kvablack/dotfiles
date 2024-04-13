@@ -74,28 +74,3 @@ function pdb() {
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/black/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/black/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/black/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/black/google-cloud-sdk/completion.zsh.inc'; fi
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.1.3
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/black/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/black/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/black/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/black/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
