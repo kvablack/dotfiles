@@ -8,7 +8,8 @@ sudo yabai --load-sa
 yabai -m config layout bsp
 
 # Set all padding and gaps
-yabai -m config top_padding 5
+yabai -m config external_bar all:37:0
+yabai -m config top_padding 0
 # yabai -m config bottom_padding 5
 # yabai -m config left_padding 5
 # yabai -m config right_padding 5
@@ -22,5 +23,24 @@ yabai -m rule --add app=".*" layer=normal
 # float system preferences
 yabai -m rule --add app="^System Settings$" manage=off
 
-# float Arc by default (for little arc)
-yabai -m rule --add app="^Arc$" manage=off
+# manage little Arc
+yabai -m rule --add app="^Arc$" subrole="^AXSystemDialog$" manage=on
+
+# If no window on the current space is focused after a window is destroyed or
+# minimized, or an application is hidden, focus the window under the cursor.
+yabai -m signal --add event=window_destroyed \
+  action="${functions[focus_under_cursor]}"
+yabai -m signal --add event=window_minimized \
+  action="${functions[focus_under_cursor]}"
+yabai -m signal --add event=application_hidden \
+  action="${functions[focus_under_cursor]}"
+
+function focus_under_cursor {
+  if yabai -m query --windows --space |
+      jq -er 'map(select(.focused == 1)) | length == 0' >/dev/null; then
+    yabai -m window --focus mouse 2>/dev/null || true
+  fi
+}
+
+# start alacritty daemon
+alacritty --daemon
