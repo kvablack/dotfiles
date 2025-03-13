@@ -69,5 +69,6 @@ ctrl + alt - l : yabai -m window --resize right:100:0 || yabai -m window --resiz
 alt - b : yabai -m space --balance
 
 ## Misc
-# Open new Alacritty window
-alt - t : open -n -a 'Alacritty.app'
+# Open new terminal window
+# alt - t : open -n -a 'Alacritty.app'
+alt - t : alacritty msg create-window
